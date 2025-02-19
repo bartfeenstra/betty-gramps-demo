@@ -9,6 +9,11 @@ extensions:
       primary_color: '#48786e'
       secondary_color: '#785548'
       tertiary_color: '#f7c1ad'
+      featured_entities:
+        - entity_type: person
+          entity: I0044
+        - entity_type: place
+          entity: P0007
   gramps:
     configuration:
       family_trees:
