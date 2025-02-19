@@ -1,0 +1,15 @@
+# Virtual environments.
+/.tox
+/venv
+
+# Python build artifacts.
+__pycache__
+/betty_gramps_demo.egg-info
+/build
+/dist
+*.pyc
+*.pyc.*
+
+# Deployment artifacts
+/gramps
+/output

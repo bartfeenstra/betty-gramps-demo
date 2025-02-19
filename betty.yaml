@@ -1,0 +1,29 @@
+url: https://bartfeenstra.github.io/betty-gramps-demo
+clean_urls: true
+title: A Betty & Gramps demonstration
+author: Bart Feenstra
+lifetime_threshold: 100
+extensions:
+  raspberry-mint: {}
+  gramps:
+    configuration:
+      family_trees:
+        - file: ./gramps/example/gramps/example.xml
+  deriver: {}
+  privatizer: {}
+  wikipedia: {}
+  maps: {}
+  http-api-doc: {}
+  trees: {}
+locales:
+  - locale: en-US
+    alias: en
+  - locale: ar
+  - locale: de-DE
+    alias: de
+  - locale: fr-FR
+    alias: fr
+  - locale: he
+  - locale: nl-NL
+    alias: nl
+  - locale: uk

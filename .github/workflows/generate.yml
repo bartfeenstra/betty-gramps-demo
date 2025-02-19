@@ -1,0 +1,88 @@
+name: Generate the demonstration site
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '12 * * * *'
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: 'Python 3.13'
+            os: ubuntu-latest
+            python: '3.13'
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Check out the source code
+        uses: actions/checkout@v4
+
+      - name: Get the pip cache directory
+        run: echo "pip_cache_dir=$(pip cache dir)" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.pip_cache_dir }}
+          key: pip-${{ runner.os }}-${{ matrix.python }}-${{ hashFiles('./setup.py') }}
+          restore-keys: |
+            pip-${{ runner.os }}-${{ matrix.python }}-
+
+      - name: Get the npm cache directory
+        run: echo "npm_cache_dir=$(npm config get cache)" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.npm_cache_dir }}
+          key: npm-${{ runner.os }}-${{ hashFiles('./package.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+
+      - name: Install APT dependencies
+        run: sudo apt-get install poppler-utils
+
+      - name: Install Python packages
+        run: pip install .
+        shell: bash
+
+      - name: Install Python packages
+        run: pip install git+https://github.com/bartfeenstra/betty@0.4.x
+        shell: bash
+
+      - name: Download the Gramps example family tree
+        run: |
+          mkdir ./gramps
+          wget -qO- https://github.com/gramps-project/gramps/archive/refs/tags/v5.2.4.tar.gz | tar xvz --strip-components=1 -C ./gramps
+          cp ./gramps/example/gramps/example.gramps ./gramps/example/gramps/example.xml
+          sed -i "s#{GRAMPS_RESOURCES}#$(pwd)/gramps#g" ./gramps/example/gramps/example.xml
+        shell: bash
+
+      - name: Generate the demonstration site
+        run: betty generate -vv
+        shell: bash
+
+      - name: Upload the demonstration site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./output/www/
+
+      - name: Deploy the demonstration site
+        uses: actions/deploy-pages@v4
