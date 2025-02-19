@@ -15,15 +15,3 @@ extensions:
   maps: {}
   http-api-doc: {}
   trees: {}
-locales:
-  - locale: en-US
-    alias: en
-  - locale: ar
-  - locale: de-DE
-    alias: de
-  - locale: fr-FR
-    alias: fr
-  - locale: he
-  - locale: nl-NL
-    alias: nl
-  - locale: uk
