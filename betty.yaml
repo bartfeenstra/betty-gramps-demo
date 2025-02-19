@@ -8,7 +8,7 @@ extensions:
     configuration:
       primary_color: '#48786e'
       secondary_color: '#785548'
-      tertiary_color: '#F7C1ad'
+      tertiary_color: '#f7c1ad'
   gramps:
     configuration:
       family_trees:
