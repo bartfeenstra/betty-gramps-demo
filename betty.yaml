@@ -4,7 +4,11 @@ title: A Betty & Gramps demonstration
 author: Bart Feenstra
 lifetime_threshold: 100
 extensions:
-  raspberry-mint: {}
+  raspberry-mint:
+    configuration:
+      primary_color: '#48786e'
+      secondary_color: '#785548'
+      tertiary_color: '#F7C1ad'
   gramps:
     configuration:
       family_trees:
