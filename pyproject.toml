@@ -12,7 +12,7 @@ authors = [
 ]
 requires-python = '~= 3.12'
 dependencies = [
-    'betty ~= 0.4.7',
+    'betty ~= 0.4.8',
 ]
 
 [tool.setuptools.packages.find]
