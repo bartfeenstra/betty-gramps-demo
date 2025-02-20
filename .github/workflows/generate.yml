@@ -72,7 +72,7 @@ jobs:
         shell: bash
 
       - name: Generate the demonstration site
-        run: betty generate -vv
+        run: betty generate -v
         shell: bash
 
       - name: Upload the demonstration site
