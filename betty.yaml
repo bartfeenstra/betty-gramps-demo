@@ -1,7 +1,7 @@
 url: https://bartfeenstra.github.io/betty-gramps-demo
 clean_urls: true
 title: A Betty & Gramps demonstration
-author: Bart Feenstra
+author: The Betty & Gramps communities
 lifetime_threshold: 100
 extensions:
   raspberry-mint:
