@@ -19,7 +19,6 @@ extensions:
       family_trees:
         - file: ./gramps/example/gramps/example.xml
   deriver: {}
-  privatizer: {}
   wikipedia: {}
   maps: {}
   http-api-doc: {}
