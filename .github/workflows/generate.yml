@@ -57,7 +57,9 @@ jobs:
         uses: actions/setup-node@v4
 
       - name: Install APT dependencies
-        run: sudo apt-get install poppler-utils
+        run: |
+          sudo apt-get update
+          sudo apt-get install poppler-utils
 
       - name: Install Python packages
         run: pip install .
